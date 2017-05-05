@@ -42,9 +42,9 @@ def generate_tif_thumbnail(input_raster_path, target_path):
     path_pices = img.filename.split("\\")
     file_name = path_pices[len(path_pices) - 1].split(".")[0]
     region.save(target_path + "\\" + file_name + ".jpg", "JPEG")
-    del path_pices, file_name
-    del img, region
+    del path_pices, file_name,region
     print u"成功，生成"+img.filename+"..."
+    del img
 
 
 # 生成jpg图像的缩略图  raster_path必须为3波段的影像或者jpg
@@ -58,8 +58,8 @@ def generate_thumbnail(input_raster_path, target_path):
     file_name = path_pices[len(path_pices) - 1].split(".")[0]
     img.save(target_path + "\\" + file_name + ".jpg", "JPEG")
     del path_pices, file_name
-    del img
     print u"成功，生成"+img.filename+"..."
+    del img
 
 
 def for_each_file(folder_path, target_path):
