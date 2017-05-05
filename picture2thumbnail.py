@@ -9,7 +9,7 @@ from PIL import Image
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
-#4波段tif图像转换为3波段图像
+# tif 4波段图像转换为3波段图像   --未用
 def band4_2_band3_raster(band4_raster_path, temp_file_path):
     raster_arr = arcpy.RasterToNumPyArray(
         band4_raster_path.decode("utf8").encode("gbk"))
@@ -39,13 +39,12 @@ def generate_tif_thumbnail(input_raster_path, target_path):
     #img.thumbnail(img.size, Image.ANTIALIAS)
     # img.save(target_path + img.filename.split(parent)
     #         [1].split(".")[0] + ".jpeg", "JPEG")
-    print img.filename
     path_pices = img.filename.split("\\")
     file_name = path_pices[len(path_pices) - 1].split(".")[0]
     region.save(target_path + "\\" + file_name + ".jpg", "JPEG")
     del path_pices, file_name
     del img, region
-    print u"生成"+img.filename+"的所路途成功..."
+    print u"成功，生成"+img.filename+"..."
 
 
 # 生成jpg图像的缩略图  raster_path必须为3波段的影像或者jpg
@@ -60,7 +59,7 @@ def generate_thumbnail(input_raster_path, target_path):
     img.save(target_path + "\\" + file_name + ".jpg", "JPEG")
     del path_pices, file_name
     del img
-    print u"生成"+img.filename+"的所路途成功..."
+    print u"成功，生成"+img.filename+"..."
 
 
 def for_each_file(folder_path, target_path):
@@ -74,16 +73,14 @@ def for_each_file(folder_path, target_path):
                 elif img_type[1] in filename:
                     generate_tif_thumbnail(file_path, target_path)
                 else:
-                    print(u"非限定类型的的数据，不能生成缩略图")
+                    print(u"未知类型的数据不能生成缩略图")
     except Exception, e:
         print e
 
 
 if __name__ == "__main__":
     # 图片存放目录
-    base_path = ""
     folder_path = unicode(r"C:\geocon1\解译样本", "utf8").encode("gbk")
     target_path = unicode(r"C:\geocon1\thumbile", "utf8").encode("gbk")
-    #temp_file_paht = unicode(r"C:\geocon1\temp", "utf8").encode("gbk")
     img_type = [".jpg", ".tif"]  # 过滤类型
     for_each_file(folder_path, target_path)
