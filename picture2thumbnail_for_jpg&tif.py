@@ -80,7 +80,7 @@ def for_each_file(folder_path, target_path):
 
 if __name__ == "__main__":
     # 图片存放目录
-    folder_path = unicode(r"C:\geocon1\解译样本", "utf8").encode("gbk")
-    target_path = unicode(r"C:\geocon1\thumbile", "utf8").encode("gbk")
+    folder_path = unicode(r"C:\geocon\解译样本", "utf8").encode("gbk")
+    target_path = unicode(r"C:\geocon\thumbile", "utf8").encode("gbk")
     img_type = [".jpg", ".tif"]  # 过滤类型
     for_each_file(folder_path, target_path)
